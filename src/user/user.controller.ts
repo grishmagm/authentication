@@ -126,6 +126,11 @@ export class UserController {
       //   });
     }
 };
+@Get(':id')
+read(@Param('id') id: string){
+  return this.usersService.read(id)
+
+}
   //   @Get()
   // @UseGuards(AuthGuard('google'))
   // async googleAuth(@Req() req) 

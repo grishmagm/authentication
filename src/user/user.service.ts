@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/adjacent-overload-signatures */
 /* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 /* eslint-disable @typescript-eslint/no-empty-function */
@@ -539,6 +540,11 @@ export class UserService {
     });
     
      upload = multer({storage: this.storage});
+
+     async readone(_id: string) {
+        console.log(_id);
+        return await this.userModel.find({ _id });
+      }
 
 
      
