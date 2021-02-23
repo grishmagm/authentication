@@ -6,7 +6,7 @@ import { Body, Controller, Get, Param, Patch, Post, Put, Req, Res, UploadedFile,
 import { AuthGuard } from '@nestjs/passport';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiConsumes } from '@nestjs/swagger';
-import { ApiBody } from '@nestjs/swagger';
+//import { ApiBody } from '@nestjs/swagger';
 
 
 import path from 'path';

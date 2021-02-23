@@ -13,7 +13,8 @@ import { AuthService } from 'src/auth/auth.service';
 import { JwtService } from 'src/jwt/jwt.service';
 import { ChangePasswordDTO, CreateUserDto, PushNotificationDTO, UsersUpdateDTO } from './dto/createuser.dto';
 import { User, UserDocument } from './schemas/user.schema';
-import * as uuid from 'uuid/v1';
+import { v4 as uuidv4 } from 'uuid';
+//import * as uuid from 'uuid/v1';
 import {CommonResponseModel,globalConfig} from '../auth/app-service-data';
 import config from '../config/keys';
 import { UploadService } from 'src/upload/upload.service';
@@ -92,11 +93,11 @@ export class UserService {
             createUserDto.password = hashedPassword;
             console.log(createUserDto.password)
             createUserDto.registrationDate = new Date();
-            const verificationId = uuid();
-            console.log(verificationId,"verification")
+             const verificationId = uuidv4();
+             console.log(verificationId,"verification")
            
             createUserDto.verificationId = verificationId;
-            const playerId = uuid();
+            const playerId = uuidv4();
             console.log(playerId,"playerId")
             createUserDto.playerId = playerId;
             createUserDto.emailVerified = false;
@@ -159,6 +160,7 @@ export class UserService {
             return {
                 response_code: HttpStatus.UNAUTHORIZED,
                 data: `User  ${CreateUserDto.email} is not registered`,
+               
             };
         }
         console.log(CreateUserDto.password)
@@ -270,7 +272,7 @@ export class UserService {
         console.log(createuserDto);
       
         
-        const verificationId = uuid();
+        const verificationId = uuidv4();
         console.log(verificationId,"verification")
         createuserDto.verificationId = verificationId;
         createuserDto.verified = false;
@@ -467,7 +469,7 @@ export class UserService {
     private getFolderName(file, type: string, picType: string) {
         const month = this.months[new Date().getMonth()];
         const currentYear = new Date().getFullYear();
-        const uniqueId = uuid();
+        const uniqueId = uuidv4();
         const fileName = `${picType}${file.originalname}`;
         return `${type}/${month}-${currentYear}/${uniqueId}${fileName}`;
     }
